@@ -18,11 +18,9 @@ public class ClientService {
 	
 	@Transactional(readOnly = true)
 	public List<ClientDTO> findAll() {
-		List<ClientDTO> clientsDTO = clientRepository.findAll().stream()
+		return clientRepository.findAll().stream()
 			.map(client -> new ClientDTO(client))
 			.collect(Collectors.toList());
-		
-		return clientsDTO;
 	}
 	
 }
