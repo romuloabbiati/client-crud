@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.smartgroup.clientcrud.dto.ClientDTO;
 import com.smartgroup.clientcrud.entities.Client;
 import com.smartgroup.clientcrud.repositories.ClientRepository;
+import com.smartgroup.clientcrud.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -30,7 +31,7 @@ public class ClientService {
 		Optional<Client> clientOptional = clientRepository.findById(id);
 		
 		Client client = clientOptional.orElseThrow(
-				() -> new RuntimeException("Client not found!"));
+				() -> new ResourceNotFoundException("Client not found!"));
 		
 		return new ClientDTO(client);
 	}
